@@ -2,8 +2,10 @@
 <template>
  <div>
             <div class="min_box">
+                <input v-model="check" type="checkbox">
                 <div class="title">Todo App</div>
-                <div class="todo-form">
+                <div class="todo-form" v-if="check">
+                   
                     <input 
                         v-model="input_value" 
                         class="todo-input" 
@@ -33,10 +35,13 @@ const input_value = ref('')
 const list = ref([
 ])
 
+const check = ref(false)
+
 function input_button_click() {
     if(input_value.value.length >0){
         list.value.push({isCompleted: false, name: input_value.value})
     }
+    input_value.value = ''
 }
 
 function item_del(index) {
